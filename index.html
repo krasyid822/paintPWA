@@ -38,13 +38,6 @@
         alert("Please rotate your device to landscape mode for the best experience.");
         }
 
-        // Paksa ke landscape
-        if (screen.orientation && screen.orientation.lock) {
-        screen.orientation.lock('landscape').catch(function(error) {
-            console.log('Gagal mengunci orientasi: ', error);
-        });
-}
-
     </script>
     <style>
         .playwrite-gb-s-800 {
@@ -60,11 +53,6 @@
         'GRAD' 0,
         'opsz' 24
         }
-        @media screen and (orientation: portrait) {
-        body {
-            transform: rotate(90deg);
-            /* Tampilan peringatan atau perubahan tampilan ketika portrait */
-        }}
 
         body {
             background-color: black;
