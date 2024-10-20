@@ -38,6 +38,17 @@
         alert("Please rotate your device to landscape mode for the best experience.");
         }
 
+        // Disable navigation gestures
+        document.addEventListener('gesturestart', function(e) {
+            e.preventDefault();
+        });
+        document.addEventListener('gesturechange', function(e) {
+            e.preventDefault();
+        });
+        document.addEventListener('gestureend', function(e) {
+            e.preventDefault();
+        });
+
     </script>
     <style>
         .playwrite-gb-s-800 {
@@ -68,14 +79,12 @@
         }
         .toolbar {
             position: fixed;
-            top: 0;
+            bottom: 0;
             background: rgba(255, 255, 255, 0.445);
             padding: 1px;
             z-index: 10;
         }
-        /* .toolbar button, .toolbar input {
-            margin: 5px;
-        } */
+        
     </style>
 </head>
 <body class="playwrite-gb-s-800">
@@ -86,8 +95,20 @@
         <label for="colorPicker">Color:</label>
         <input type="color" id="colorPicker" value="#ffffff" onchange="changeColor(this.value)">
         <label for="brushSize">Brush Size:</label>
-        <input type="range" id="brushSize" value="5" min="1" max="50" onchange="changeBrushSize(this.value)">
-      </div>
+        <select id="brushSize" onchange="changeBrushSize(this.value)">
+            <option value="1">1</option>
+            <option value="5" selected>5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+            <option value="30">30</option>
+            <option value="35">35</option>
+            <option value="40">40</option>
+            <option value="45">45</option>
+            <option value="50">50</option>
+        </select>
+    </div>
     <canvas id="drawingCanvas"></canvas>
 
     <script>
