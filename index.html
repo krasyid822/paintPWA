@@ -6,6 +6,10 @@
 
     <title>Paint</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/jpg" sizes="32x32" href="rsc\jpg\icon.jpg">
     <base href="base.html">
@@ -43,6 +47,19 @@
 
     </script>
     <style>
+        .playwrite-gb-s-800 {
+            font-family: "Playwrite GB S", cursive;
+            font-optical-sizing: auto;
+            font-weight: 800;
+            font-style: normal;
+        }
+        .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+        }
         @media screen and (orientation: portrait) {
         body {
             transform: rotate(90deg);
@@ -50,7 +67,7 @@
         }}
 
         body {
-            background-color: white;
+            background-color: black;
             margin: 0;
             overflow: hidden;
             cursor: crosshair;
@@ -63,22 +80,21 @@
         }
         .toolbar {
             position: fixed;
-            top: 0;
-            left: 0;
-            background: rgba(136, 255, 0, 0.445);
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.445);
             padding: 1px;
             z-index: 10;
         }
-        .toolbar button, .toolbar input {
+        /* .toolbar button, .toolbar input {
             margin: 5px;
-        }
+        } */
     </style>
 </head>
-<body>
+<body class="playwrite-gb-s-800">
     <div class="toolbar">
-        <button onclick="clearCanvas()">Clear</button>
-        <button onclick="undo()">Undo</button>
-        <button onclick="redo()">Redo</button>
+        <button onclick="clearCanvas()"><span class="material-symbols-outlined">delete_forever</span></button>
+        <button onclick="undo()"><span class="material-symbols-outlined">undo</span></button>
+        <button onclick="redo()"><span class="material-symbols-outlined">redo</span></button>
         <label for="colorPicker">Color:</label>
         <input type="color" id="colorPicker" value="#000000" onchange="changeColor(this.value)">
         <label for="brushSize">Brush Size:</label>
@@ -89,9 +105,9 @@
     <script>
         const canvas = document.getElementById('drawingCanvas');
         const ctx = canvas.getContext('2d');
-        ctx.imageSmoothingEnabled = true;
+        /* ctx.imageSmoothingEnabled = true; */
         let drawing = false;
-        let brushColor = '#000000';
+        let brushColor = '#ffffff';
         let brushSize = 5;
         let history = [];
         let historyIndex = -1;
