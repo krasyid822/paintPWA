@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <title>Paint</title>
 
@@ -29,13 +29,32 @@
             });
         }
 
+        // Peringatan orientasi layar
+        if (window.screen.orientation.type.startsWith('portrait')) {
+        alert("Please rotate your device to landscape mode for the best experience.");
+        }
+
+        // Paksa ke landscape
+        if (screen.orientation && screen.orientation.lock) {
+        screen.orientation.lock('landscape').catch(function(error) {
+            console.log('Gagal mengunci orientasi: ', error);
+        });
+}
+
     </script>
     <style>
+        @media screen and (orientation: portrait) {
+        body {
+            transform: rotate(90deg);
+            /* Tampilan peringatan atau perubahan tampilan ketika portrait */
+        }}
+
         body {
             background-color: white;
             margin: 0;
             overflow: hidden;
             cursor: crosshair;
+            zoom: 100%;
         }
         canvas {
             display: block;
@@ -70,12 +89,12 @@
     <script>
         const canvas = document.getElementById('drawingCanvas');
         const ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = true;
         let drawing = false;
         let brushColor = '#000000';
         let brushSize = 5;
         let history = [];
         let historyIndex = -1;
-
 
         function resizeCanvas() {
         canvas.width = window.innerWidth;
